@@ -1,0 +1,99 @@
+project demo
+
+col_names = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital_status', 'occupation', 'relationship', 'race', 'sex', 'capital_gain', 'capital_loss', 'hours_per_week', 'native_country', 'income']
+# df = pd.read_csv("adult.data", names = col_names, header = None)
+df = pd.read_csv("test.data", names = col_names, header = None)
+# print(df[col_names[0]])
+
+for col in col_names:
+    if not isinstance(df[col][0],np.int64):
+        df[col] = df[col].apply(lambda x : x.strip() if x.strip() != '?' else None)
+# print(df)
+
+
+# races = df['race'].values
+# sum = len(races)
+
+# count1 = {} # count the sum of each race
+# count2 = {} # count the num of over 50k on each race
+# for i in range(sum):
+#     if not races[i] in count1:
+#         count1[races[i]] = 0
+#         count2[races[i]] = 0
+
+#     count1[races[i]] = count1[races[i]] + 1
+
+#     if df['income'][i] == '>50K':
+#         count2[races[i]] = count2[races[i]] + 1
+
+# # print(count1)
+# # print(count2)
+
+# percentage = {}
+# for r in count1.keys():
+#     if not r in percentage:
+#         percentage[r] = 0
+#         # print(races[j])
+#     percentage[r] = count2[r] * 100 / count1[r]
+#     plt.bar(r, percentage[r], width= 0.5)  
+
+# plt.xticks(rotation = 30)
+# plt.xlabel('Race')
+# plt.ylabel('Percentage of Income over 50k')
+# plt.title('Percentage of Income over 50k on Race')
+
+# plt.show()
+
+#scenario2: marital_status's impact on income
+# ms = df['marital_status'].values
+# sum = len(ms)
+# # print(ms)
+# # print(sum)
+# ms_count1 = {} # count the sum of each marital_status
+# ms_count2 = {} # count the num of over 50k on each marital_status
+# ms_count3 = {} # count the num of <= 50k on each marital_status
+
+# for i in range(sum):
+#     if not ms[i] in ms_count1:
+#         ms_count1[ms[i]] = 0
+#         ms_count2[ms[i]] = 0
+#         ms_count3[ms[i]] = 0
+
+#     ms_count1[ms[i]] = ms_count1[ms[i]] + 1
+
+#     if df['income'][i] == '>50K':
+#         ms_count2[ms[i]] = ms_count2[ms[i]] + 1
+#     else:
+#         ms_count3[ms[i]] = ms_count3[ms[i]] + 1
+# # print(ms_count1)
+# # print(ms_count2)
+# # print(ms_count3)
+
+# percentage1 = {} # percentage of income over 50k
+# percentage2 = {} # percentage of income <= 50k
+# for m in ms_count1.keys():
+#     if not m in percentage1:
+#         percentage1[m] = 0
+#         percentage2[m] = 0
+#         # print(races[j])
+#     percentage1[m] = ms_count2[m] * 100 / ms_count1[m]
+#     percentage2[m] = ms_count3[m] * 100 / ms_count1[m]
+# print(percentage1)
+# print(percentage2)
+
+# def Merge (dict1, dict2):
+#     dict3 = {**dict1, **dict2}
+#     for key, value in dict3.items():
+#        if key in dict1 and key in dict2:
+#                dict3[key] = [value , dict1[key]]
+#     return dict3
+
+# dict3 = Merge(percentage1, percentage2)
+# print(dict3)
+
+# dict_frame = pd.DataFrame.from_dict(dict3)
+# print(dict_frame)
+# dict_frame.columns = ['Never-married','Married-civ-spouse','Divorced','Married-spouse-absent','Separated','Married-AF-spouse']
+# # pd.plotting.scatter_matrix(dict_frame, alpha = 1)
+# parallel_coordinates(dict_frame, )
+# plt.gca().legend_.remove()
